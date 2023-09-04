@@ -1,10 +1,26 @@
 class Main {
 
     #peoples = [
-        'Robert Smith',
-        'Billy Idol',
-        'Nina Hagen',
-        'Sid Vicious'
+        {
+            "lastname": "Smith",
+            "firstname": "Robert",
+            "band": "The Cure"
+        },
+        {
+            "lastname": "Idol",
+            "firstname": "Billy",
+            "band": "Generation X"
+        },
+        {
+            "lastname": "Hagen",
+            "firstname": "Nina",
+            "band": "Nina Hagen"
+        },
+        {
+            "lastname": "Vicious",
+            "firstname": "Sid",
+            "band": "Sex Pistols"
+        }
     ];
     constructor() {
         this.#run()
@@ -19,18 +35,32 @@ class Main {
         titleLevel2.innerText = 'Titre niveau 2';
 
         // Hook the new DOM Element to an existing element
-        document.body.appendChild(titleLevel2);
+        /*document.body.appendChild(titleLevel2);
         const ul = document.createElement('ul');
-        for(const people of this.#peoples) {
+        this.#peoples.forEach((people) => {
             const li = document.createElement('li');
-            if(people !== 'Billy Idol') {
-                li.innerText = people;
+            if(people.firstname !== 'Billy') {
+                li.innerText = people.firstname;
             } else {
-                li.innerText = `<strong>${people}</strong>`;
+                li.innerText = `<strong>${people.firstname}</strong>`;
             }
             ul.appendChild(li);
-        }
-        document.body.appendChild(ul);
+            
+        });
+        document.body.appendChild(ul);*/
+
+        this.#peoples.forEach((people) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+            <tr>
+                <td>${people.firstname}</td>
+                <td>${people.lastname}</td>
+                <td>${people.band}</td>
+            </tr>
+            `
+            document.querySelector('tbody').appendChild(tr);
+        });
+        
     }
 }
 
